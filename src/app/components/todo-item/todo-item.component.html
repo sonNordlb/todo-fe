@@ -1,0 +1,11 @@
+<div class="todo" (dblclick)="onToggle(todo)">
+  <h3 [ngClass]="{ reminder: todo.completed }">
+    {{ todo.text }}
+    <fa-icon
+      (click)="onDelete(todo)"
+      [ngStyle]="{ color: 'red' }"
+      [icon]="faTimes"
+    ></fa-icon>
+  </h3>
+  <p>{{ todo.day }}</p>
+</div>

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2022-05-16T09:46:12Z"
+  generation: 1
+  labels:
+    app: todo-frontend
+  name: todo-frontend
+  namespace: default
+  resourceVersion: "816"
+  uid: 1a6a811b-4618-41ca-9598-f0677fca5215
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: todo-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: todo-frontend
+    spec:
+      containers:
+      - image: k3d-test-app-registry:5050/todo-frontend:v1.0
+        imagePullPolicy: IfNotPresent
+        name: todo-frontend
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2022-05-16T09:46:12Z"
+    lastUpdateTime: "2022-05-16T09:46:12Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  - lastTransitionTime: "2022-05-16T09:46:12Z"
+    lastUpdateTime: "2022-05-16T09:46:12Z"
+    message: ReplicaSet "todo-frontend-96d8c698" is progressing.
+    reason: ReplicaSetUpdated
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  replicas: 1
+  unavailableReplicas: 1
+  updatedReplicas: 1
