@@ -10,4 +10,4 @@ jobs:
           node-version: "14"
       - run: npm ci
       - run: npm run build --if-present
-      - run: echo test
+      - run: ls -la
